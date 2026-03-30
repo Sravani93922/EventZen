@@ -1,0 +1,20 @@
+db/mysql/*.sock
+# Node & React
+node_modules/
+frontend-react/node_modules/
+backend-node/node_modules/
+
+# Logs
+*.log
+
+# OS / IDE
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Database sockets & data
+db/mysql/*.sock
+db/mongo/*.lock
+db/

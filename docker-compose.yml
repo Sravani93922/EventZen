@@ -1,0 +1,70 @@
+version: "3.8"
+
+services:
+
+  # =========================
+  # 1) MongoDB
+  # =========================
+  eventzen-mongo:
+    image: mongo:6.0
+    container_name: eventzen-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./db/mongo:/data/db
+
+  # =========================
+  # 2) MySQL
+  # =========================
+  eventzen-mysql:
+    image: mysql:8.0
+    container_name: eventzen-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root        # username: root, password: root
+      MYSQL_DATABASE: eventzendb       # auto-creates DB
+      MYSQL_USER: user                 # optional user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+
+  # =========================
+  # 3) NodeJS Backend
+  # =========================
+  eventzen-node:
+    build: ./backend-node
+    container_name: eventzen-node
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend-node/.env
+    depends_on:
+      - eventzen-mongo
+      - eventzen-mysql
+
+  # =========================
+  # 4) Spring Boot Backend
+  # =========================
+  eventzen-spring:
+    build: ./backend-spring
+    container_name: eventzen-spring
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://eventzen-mysql:3306/eventzendb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Sravani9392
+    depends_on:
+      - eventzen-mysql
+
+  # =========================
+  # 5) React Frontend
+  # =========================
+  eventzen-react:
+    build: ./frontend-react
+    container_name: eventzen-react
+    ports:
+      - "3000:80"
+    depends_on:
+      - eventzen-node
