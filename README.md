@@ -1,8 +1,6 @@
 # EventZen
 Full-stack event management system with React frontend, Node.js and Spring Boot backends, MongoDB and MySQL databases, fully Dockerised for easy deployment. Includes user authentication, role-based access, and admin dashboard.
 # EventZen
-Full-stack event management system with React frontend, Node.js and Spring Boot backends, MongoDB and MySQL databases, fully Dockerised for easy deployment. Includes user authentication, role-based access, and admin dashboard.
-# EventZen
 
 EventZen is a full-stack event management system with Dockerized backend and frontend. This project includes:
 
@@ -60,6 +58,7 @@ Create .env files for the backends:
 Node backend (backend-node/.env):
 
 ## Environment Variables
+
 Create .env files for the backends:
 Node backend (backend-node/.env):
 PORT=5000
@@ -68,7 +67,7 @@ JWT_SECRET=yourSuperSecretKey12345678901234567890
 JWT_EXPIRE=1d
 
 
-API Endpoints
+## API Endpoints
 User Authentication (Node.js backend)
 Endpoint                             Method                    Body Parameters                    Description
 /api/users/register                   POST                   name, email, password, role        Register new user (role optional)
@@ -85,10 +84,13 @@ Known Issue
 Registration from frontend is currently not working.
 Registration works correctly via Postman, and the user is saved in MongoDB with a hashed password.
 If needed, use Postman to create users for testing login and dashboard functionality.
-Login works properly once a user exists. ⚠️⚠️ (Note:**email**: sravi9392@gmail.com ,  **password**:Sravani for #admin  &&  user **email**:test@gmail.com , **password**:test)
+Login works properly once a user exists. 
+⚠️⚠️ (Note:**email**: sravi9392@gmail.com ,  **password**:Sravani for #admin  &&  user **email**:test@gmail.com , **password**:test)
 
 
-Usage
+## Usage
+
+
 Start the stack:
    docker-compose up --build
    Frontend: Open http://localhost:3000⁠
@@ -97,11 +99,14 @@ Start the stack:
    Postman: You can test /api/users/register and /api/users/login endpoints directly
 
 
-Additional Notes
+## Additional Notes
+
         Make sure ports 5000, 3000, 8080, 27017, and 3306 are free.
         JWT secret and database credentials must match .env files.
         For full project review, registration can be bypassed by providing credentials or using Postman to register users.
-License
+
+## License
+
 This project is for academic purposes and not for commercial use.
 
 This README clearly explains the project, Docker setup, endpoints, usage instructions, and the **register frontend issue** with guidance on using Postman.
